@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#818CF8'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/7c03b910072c7b35073f36735f5e22a2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .magnetic-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-gray-800">
+    <nav
+        class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur-md z-50 px-4 py-3 flex justify-between items-center shadow-sm">
+        <div class="text-xl font-medium">我的</div>
+        <button class="!rounded-button w-8 h-8 flex items-center justify-center">
+            <i class="fas fa-gear text-gray-600"></i>
+        </button>
+    </nav>
+    <main class="pt-16 pb-20 px-4">
+        <div class="magnetic-card rounded-xl p-4 mb-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                    <img src="https://image-resource.mastergo.com/154068940451066/154068940451068/efe5cb243d7af00631f7b4a1136cb93d.jpg"
+                        alt="用户头像" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1">
+                    <h2 class="text-lg font-semibold text-gray-900">伏海</h2>
+                    <p class="text-sm text-gray-600">会员等级：黄金会员</p>
+                </div>
+            </div>
+        </div>
+        <div class="magnetic-card rounded-xl p-4 mb-6 shadow-lg">
+            <div class="grid grid-cols-4 gap-4 text-center">
+                <div>
+                    <div class="text-lg font-semibold text-primary">28</div>
+                    <div class="text-xs text-gray-600">使用天数</div>
+                </div>
+                <div>
+                    <div class="text-lg font-semibold text-primary">12</div>
+                    <div class="text-xs text-gray-600">收藏模式</div>
+                </div>
+                <div>
+                    <div class="text-lg font-semibold text-primary">86</div>
+                    <div class="text-xs text-gray-600">总时长(h)</div>
+                </div>
+                <div>
+                    <div class="text-lg font-semibold text-primary">4.9</div>
+                    <div class="text-xs text-gray-600">平均评分</div>
+                </div>
+            </div>
+        </div>
+        <div class="magnetic-card rounded-xl p-4 mb-6 shadow-lg">
+            <div class="space-y-4">
+                <a href="shebei.html" class="no-underline">
+                    <button
+                        class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                        <div class="flex items-center">
+                            <i
+                                class="fas fa-bed text-primary w-8 h-8 flex items-center justify-center transition-transform group-hover:rotate-12"></i>
+                            <span class="text-gray-900 ml-3">我的设备</span>
+                        </div>
+                        <i
+                            class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </a>
+                <button
+                    class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                    <div class="flex items-center">
+                        <i
+                            class="fas fa-bell text-primary w-8 h-8 flex items-center justify-center transition-transform hover:animate-bounce"></i>
+                        <span class="text-gray-900 ml-3">消息通知</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                </button>
+                <button
+                    class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                    <div class="flex items-center">
+                        <i
+                            class="fas fa-star text-primary w-8 h-8 flex items-center justify-center transition-transform hover:scale-110 hover:rotate-180"></i>
+                        <span class="text-gray-900 ml-3">我的收藏</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                </button>
+                <button
+                    class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                    <div class="flex items-center">
+                        <i
+                            class="fas fa-clock text-primary w-8 h-8 flex items-center justify-center transition-transform hover:rotate-360 hover:scale-110"></i>
+                        <span class="text-gray-900 ml-3">使用记录</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </div>
+        </div>
+        <div class="magnetic-card rounded-xl p-4 shadow-lg">
+            <div class="space-y-4">
+                <button
+                    class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                    <div class="flex items-center">
+                        <i
+                            class="fas fa-gear text-primary w-8 h-8 flex items-center justify-center transition-transform hover:rotate-180"></i>
+                        <span class="text-gray-900 ml-3">设置</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                </button>
+                <button
+                    class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                    <div class="flex items-center">
+                        <i
+                            class="fas fa-headset text-primary w-8 h-8 flex items-center justify-center transition-transform hover:scale-110 hover:shake"></i>
+                        <span class="text-gray-900 ml-3">联系客服</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                </button>
+                <button
+                    class="w-full flex items-center justify-between p-2 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 !rounded-button">
+                    <div class="flex items-center">
+                        <i
+                            class="fas fa-circle-question text-primary w-8 h-8 flex items-center justify-center transition-transform hover:scale-110 hover:rotate-12"></i>
+                        <span class="text-gray-900 ml-3">使用帮助</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400 transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200">
+        <div class="grid grid-cols-4 h-14">
+            <style>
+                @keyframes shake {
+
+                    0%,
+                    100% {
+                        transform: rotate(0deg);
+                    }
+
+                    25% {
+                        transform: rotate(-10deg);
+                    }
+
+                    75% {
+                        transform: rotate(10deg);
+                    }
+                }
+
+                .hover\:shake:hover {
+                    animation: shake 0.5s ease-in-out;
+                }
+
+                @keyframes rotate-360 {
+                    from {
+                        transform: rotate(0deg);
+                    }
+
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                .hover\:rotate-360:hover {
+                    animation: rotate-360 1s linear;
+                }
+            </style>
+            <a href="zhuye.html"
+                class="flex flex-col items-center justify-center text-gray-600 transition-all duration-200 hover:text-primary active:scale-95 hover:-translate-y-1">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-xs font-medium">首页</span>
+            </a>
+            <a href="cichang.html"
+                class="flex flex-col items-center justify-center text-gray-600 transition-all duration-200 hover:text-primary active:scale-95 hover:-translate-y-1">
+                <i class="fas fa-magnet text-xl mb-1"></i>
+                <span class="text-xs font-medium">磁场</span>
+            </a>
+            <a href="shuju.html"
+                class="flex flex-col items-center justify-center text-gray-600 transition-all duration-200 hover:text-primary active:scale-95 hover:-translate-y-1">
+                <i class="fas fa-chart-line text-xl mb-1"></i>
+                <span class="text-xs font-medium">数据</span>
+            </a>
+            <a href="wode.html"
+                class="flex flex-col items-center justify-center text-primary nav-item transition-all duration-200 hover:text-primary active:scale-95">
+                <i class="fas fa-user text-xl mb-1"></i>
+                <span class="text-xs font-medium">我的</span>
+            </a>
+        </div>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"> <!-- 适配安全区域 -->
+    <title>我的设备</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 针对Reno9的屏幕适配 */
+        body {
+            background-image: url('https://image-resource.mastergo.com/154068940451066/154068940451068/f0f29d29d0a3fe79be8ae032de5e4628.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            /* 强制撑满视口 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 安全区域适配（针对水滴屏） */
+        main {
+            padding-top: env(safe-area-inset-top);
+            /* 适配顶部安全区域 */
+            padding-bottom: env(safe-area-inset-bottom);
+            /* 适配底部虚拟按键 */
+        }
+
+        /* 设备卡片优化 */
+        .device-card {
+            border-radius: 20px;
+            /* 符合Reno9的圆润设计语言 */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            /* 增强立体感 */
+        }
+
+        /* 字体适配（Reno9最佳显示字体大小） */
+        .title-lg {
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        /* 主标题 */
+        .text-md {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        /* 正文 */
+        .text-sm {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        /* 辅助信息 */
+
+        /* 针对20:9屏幕的布局调整 */
+        @media (max-width: 412px) and (aspect-ratio: 20/9) {
+            .pt-16 {
+                padding-top: 80px !important;
+            }
+
+            /* 增加顶部间距避免导航栏遮挡 */
+            .device-card {
+                margin-bottom: 32px !important;
+            }
+
+            /* 增加卡片垂直间距 */
+            .w-24 {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            /* 放大设备图标 */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00C851', secondary: '#1A1A1A' },
+                    screens: {
+                        reno9: '412px' /* 定义Reno9专属屏幕断点 */
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-transparent">
+    <!-- 左上角返回按钮（适配屏幕圆角） -->
+    <a href="wode.html" class="no-underline fixed top-6 left-6">
+        <button class="w-16 h-16 bg-primary rounded-full shadow-2xl transition-all hover:shadow-4xl"
+            style="top: 24px; left: 24px;">
+            <i class="fas fa-arrow-left text-white text-2xl"></i>
+        </button>
+    </a>
+
+    <!-- 顶部导航栏（沉浸式设计） -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+        <div class="flex items-center justify-between px-8 h-16">
+            <h1 class="title-lg text-gray-800 font-semibold">我的设备</h1>
+            <div class="flex items-center space-x-6">
+                <button class="w-10 h-10 text-gray-600 hover:text-primary transition-colors">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="w-10 h-10 text-gray-600 hover:text-primary transition-colors">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区（垂直居中和适配长屏幕） -->
+    <main class="flex-1 px-8 pt-24 pb-16 overflow-y-auto">
+        <!-- 第一个设备卡片 -->
+        <div class="device-card bg-white p-6 mb-8">
+            <div class="flex items-start">
+                <div class="w-32 h-32 rounded-2xl overflow-hidden">
+                    <img src="https://image-resource.mastergo.com/154068940451066/154068940451068/e1cb5042cf94728d2482d0b2e52c35f5.jpg"
+                        class="w-full h-full object-cover object-center">
+                </div>
+                <div class="flex-1 ml-6">
+                    <div class="flex items-center justify-between">
+                        <span class="title-lg font-medium">磁韵悠枕 Pro 2025</span>
+                        <span class="text-sm text-primary bg-primary/10 px-3 py-1.5 rounded-full">已连接</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">CYZ-20250416-001</div>
+                    <div class="mt-4">
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>电量：65%</span>
+                            <span>预计还能使用：27h 5min</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 rounded-full mt-2">
+                            <div class="h-full w-1/2 bg-primary rounded-full transition-width"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-4">
+                        <div class="w-3 h-3 bg-primary rounded-full"></div>
+                        <span class="text-sm text-gray-500 ml-3">已连接</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二个设备卡片 -->
+        <div class="device-card bg-white p-6">
+            <div class="flex items-start">
+                <div class="w-32 h-32 rounded-2xl overflow-hidden">
+                    <img src="https://image-resource.mastergo.com/154068940451066/154068940451068/799cdd13f76bc8a3b1ba5258c823c56c.png"
+                        class="w-full h-full object-cover object-center">
+                </div>
+                <div class="flex-1 ml-6">
+                    <div class="flex items-center justify-between">
+                        <span class="title-lg font-medium">磁韵悠枕 Pro 2024</span>
+                        <span class="text-sm text-red-500 bg-red-500/10 px-3 py-1.5 rounded-full">离线</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">CYZ-20240416-002</div>
+                    <div class="mt-4">
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>电量：20%</span>
+                            <span>上次连接：2小时前</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 rounded-full mt-2">
+                            <div class="h-full w-1/5 bg-red-500 rounded-full transition-width"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-4">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <span class="text-sm text-gray-500 ml-3">离线</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 右下角添加按钮（适配底部安全区域） -->
+    <button onclick="alert('添加新设备')"
+        class="fixed bottom-12 right-12 w-16 h-16 bg-primary rounded-full shadow-2xl hover:shadow-4xl transition-all">
+        <i class="fas fa-plus text-white text-2xl"></i>
+    </button>
+</body>
+
+</html>

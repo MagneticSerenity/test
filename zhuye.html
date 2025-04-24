@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡眠报告</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#818CF8'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/04db3ebd600ed335c4b30f76d2dd72f0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 200px;
+        }
+
+        .sleep-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-gray-800">
+    <nav
+        class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur-md z-50 px-4 py-3 flex justify-between items-center shadow-sm">
+        <div class="text-xl font-medium">睡眠报告</div>
+        <button class="!rounded-button w-8 h-8 flex items-center justify-center">
+            <i class="fas fa-bell text-gray-600"></i>
+        </button>
+    </nav>
+    <main class="pt-16 pb-20 px-4">
+        <div class="mb-6">
+            <h1 class="text-xl font-semibold mb-1 text-white/90">晚上好，伏海</h1>
+            <p class="text-sm text-white/75">2025 年 3 月 21 日 星期五</p>
+        </div>
+        <div class="sleep-card rounded-xl p-4 mb-6 shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <p class="text-base font-medium text-gray-600">昨晚睡眠时长</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-1">7 小时 36 分钟</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary">92</div>
+                    <p class="text-base font-medium text-gray-600 mt-1">睡眠质量</p>
+                </div>
+            </div>
+            <div id="sleepChart" class="chart-container"></div>
+        </div>
+        <div class="sleep-card rounded-xl p-4 mb-6 shadow-lg">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">睡眠阶段分析</h2>
+            <div id="sleepStageChart" class="chart-container"></div>
+        </div>
+        <div class="sleep-card rounded-xl p-4 shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">睡眠建议</h2>
+            <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-moon text-primary mt-1 text-xl"></i>
+                    <div>
+                        <p class="text-lg font-bold text-gray-900">保持规律作息</p>
+                        <p class="text-base text-gray-900 leading-relaxed mt-1">建议您在 22:30 前入睡，以保证充足的深度睡眠时间</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-temperature-low text-primary mt-1 text-xl"></i>
+                    <div>
+                        <p class="text-lg font-bold text-gray-900">调节室温</p>
+                        <p class="text-base text-gray-900 leading-relaxed mt-1">最适宜的睡眠温度为 18-22℃，建议调整空调温度</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200">
+        <div class="grid grid-cols-4 h-14">
+            <a href="zhuye.html" class="flex flex-col items-center justify-center text-primary">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-xs font-medium">首页</span>
+            </a>
+            <a href="cichang.html"
+                class="flex flex-col items-center justify-center text-gray-600 active:scale-95 transition-transform">
+                <i class="fas fa-magnet text-xl mb-1"></i>
+                <span class="text-xs font-medium">磁场</span>
+            </a>
+            <a href="shuju.html" class="flex flex-col items-center justify-center text-gray-600">
+                <i class="fas fa-chart-line text-xl mb-1"></i>
+                <span class="text-xs font-medium">数据</span>
+            </a>
+            <a href="wode.html" class="flex flex-col items-center justify-center text-gray-600">
+                <i class="fas fa-user text-xl mb-1"></i>
+                <span class="text-xs font-medium">我的</span>
+            </a>
+        </div>
+    </nav>
+    <script>
+        const sleepChart = echarts.init(document.getElementById('sleepChart'));
+        const sleepStageChart = echarts.init(document.getElementById('sleepStageChart'));
+        const sleepOption = {
+            grid: {
+                top: 20,
+                right: 20,
+                bottom: 20,
+                left: 40
+            },
+            xAxis: {
+                type: 'category',
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value',
+                min: 0,
+                max: 10,
+                axisLine: {
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+            },
+            series: [{
+                data: [7.5, 6.8, 8.2, 7.3, 7.9, 8.1, 7.6],
+                type: 'line',
+                smooth: true,
+                itemStyle: {
+                    color: '#4F46E5'
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0,
+                            color: 'rgba(79, 70, 229, 0.3)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(79, 70, 229, 0.1)'
+                        }]
+                    }
+                }
+            }]
+        };
+        const stageOption = {
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                data: [
+                    { value: 35, name: '慢波睡眠' },
+                    { value: 40, name: '浅度睡眠' },
+                    { value: 25, name: 'REM睡眠' }
+                ],
+                itemStyle: {
+                    color: function (params) {
+                        const colors = ['#4F46E5', '#818CF8', '#C7D2FE'];
+                        return colors[params.dataIndex];
+                    }
+                }
+            }]
+        };
+        sleepChart.setOption(sleepOption);
+        sleepStageChart.setOption(stageOption);
+        window.addEventListener('resize', function () {
+            sleepChart.resize();
+            sleepStageChart.resize();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>磁场调节</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#818CF8'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+        function selectMode(button, mode) {
+            // 移除所有按钮的选中状态
+            document.querySelectorAll('[data-mode]').forEach(btn => {
+                btn.classList.remove('border-primary');
+                btn.querySelector('i').classList.remove('text-primary');
+                btn.querySelector('i').classList.add('text-secondary');
+                btn.classList.add('border-gray-200');
+            });
+
+            // 添加当前按钮的选中状态
+            button.classList.remove('border-gray-200');
+            button.classList.add('border-primary');
+            button.querySelector('i').classList.remove('text-secondary');
+            button.querySelector('i').classList.add('text-primary');
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/ec614af7d52e2a17421060eb780ba640.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .magnetic-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .circular-progress {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: conic-gradient(from 0deg, #4F46E5 0%, #4F46E5 75%, #E5E7EB 75%, #E5E7EB 100%);
+        }
+
+        .circular-progress::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        .progress-value {
+            position: relative;
+            font-size: 32px;
+            font-weight: bold;
+            color: #4F46E5;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-gray-800">
+    <nav
+        class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur-md z-50 px-4 py-3 flex justify-between items-center shadow-sm">
+        <div class="text-xl font-medium">磁场调节</div>
+        <button class="!rounded-button w-8 h-8 flex items-center justify-center">
+            <i class="fas fa-history text-gray-600"></i>
+        </button>
+    </nav>
+    <main class="pt-16 pb-20 px-4">
+        <div class="mb-6">
+            <h1 class="text-xl font-semibold mb-1 text-white/90">当前磁场强度</h1>
+            <p class="text-sm text-white/75">2025 年 3 月 21 日 星期五</p>
+        </div>
+        <div class="magnetic-card rounded-xl p-6 mb-6 shadow-lg">
+            <div class="flex flex-col items-center">
+                <div class="mb-6 relative">
+                    <div class="circular-progress">
+                        <span class="progress-value">75%</span>
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <p class="text-lg font-semibold text-gray-900">磁场状态良好</p>
+                    <p class="text-sm text-gray-600 mt-1">建议保持当前强度</p>
+                </div>
+            </div>
+        </div>
+        <div class="magnetic-card rounded-xl p-4 mb-6 shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">磁场强度调节</h2>
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-900 font-medium">弱</span>
+                    <input type="range"
+                        class="w-3/4 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" min="0"
+                        max="100" value="75">
+                    <span class="text-gray-900 font-medium">强</span>
+                </div>
+                <div class="flex gap-4">
+                    <button
+                        class="flex-1 bg-white border-2 border-primary text-primary py-2 !rounded-button font-medium">重置</button>
+                    <button
+                        class="flex-1 bg-primary text-white py-2 !rounded-button font-medium transition-all duration-200 active:scale-95">应用</button>
+                </div>
+            </div>
+        </div>
+        <div class="magnetic-card rounded-xl p-4 shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">磁场模式</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="selectMode(this, 'sleep')"
+                    class="magnetic-card p-4 !rounded-button flex flex-col items-center justify-center border-2 border-primary"
+                    data-mode="sleep">
+                    <i class="fas fa-moon text-primary text-2xl mb-2"></i>
+                    <span class="text-sm font-medium text-gray-900">助眠模式</span>
+                </button>
+                <button onclick="selectMode(this, 'wake')"
+                    class="magnetic-card p-4 !rounded-button flex flex-col items-center justify-center border-2 border-gray-200"
+                    data-mode="wake">
+                    <i class="fas fa-sun text-secondary text-2xl mb-2"></i>
+                    <span class="text-sm font-medium text-gray-900">唤醒模式</span>
+                </button>
+                <button onclick="selectMode(this, 'focus')"
+                    class="magnetic-card p-4 !rounded-button flex flex-col items-center justify-center border-2 border-gray-200"
+                    data-mode="focus">
+                    <i class="fas fa-brain text-secondary text-2xl mb-2"></i>
+                    <span class="text-sm font-medium text-gray-900">专注模式</span>
+                </button>
+                <button onclick="selectMode(this, 'auto')"
+                    class="magnetic-card p-4 !rounded-button flex flex-col items-center justify-center border-2 border-gray-200 transition-all duration-200 active:scale-95"
+                    data-mode="auto">
+                    <i class="fas fa-sync-alt text-secondary text-2xl mb-2"></i>
+                    <span class="text-sm font-medium text-gray-900">自动调节</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-200">
+        <div class="grid grid-cols-4 h-14">
+            <a href="zhuye.html" class="flex flex-col items-center justify-center text-gray-600">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-xs font-medium">首页</span>
+            </a>
+            <a href="cichang.html" class="flex flex-col items-center justify-center text-primary">
+                <i class="fas fa-magnet text-xl mb-1"></i>
+                <span class="text-xs font-medium">磁场</span>
+            </a>
+            <a href="shuju.html" class="flex flex-col items-center justify-center text-gray-600">
+                <i class="fas fa-chart-line text-xl mb-1"></i>
+                <span class="text-xs font-medium">数据</span>
+            </a>
+            <a href="wode.html" class="flex flex-col items-center justify-center text-gray-600">
+                <i class="fas fa-user text-xl mb-1"></i>
+                <span class="text-xs font-medium">我的</span>
+            </a>
+        </div>
+    </nav>
+</body>
+
+</html>
